@@ -39,7 +39,13 @@ fn main() {
     react_file_name.insert(0, first_letter.to_string().chars().next().unwrap());
 
     let mut contents = String::new();
-    let mut file = File::open("./autoplate.toml").unwrap();
+    let mut file = match File::open("./autoplate.toml") {
+        Ok(file) => file,
+        Err(_) => {
+            println!("No autoplate.toml file found in current working directory.");
+            return;
+        }
+    };
     file.read_to_string(&mut contents).unwrap();
 
     let value: toml::Value = toml::from_str(&contents).unwrap();
