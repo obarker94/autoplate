@@ -6,10 +6,10 @@ use toml;
 #[allow(non_snake_case)]
 #[allow(non_camel_case_types)]
 enum ComponentType {
-    atom,
-    molecule,
-    organsim,
-    template,
+    atoms,
+    molecules,
+    organsims,
+    templates,
 }
 
 #[derive(Debug)]
@@ -23,10 +23,10 @@ fn main() {
     let component_name = std::env::args().nth(1).expect("no component name given");
     let component_type = std::env::args().nth(2).expect("no component type given");
     let component_type = match component_type.as_str() {
-        "atom" => ComponentType::atom,
-        "molecule" => ComponentType::molecule,
-        "organism" => ComponentType::organsim,
-        "template" => ComponentType::template,
+        "atom" => ComponentType::atoms,
+        "molecule" => ComponentType::molecules,
+        "organism" => ComponentType::organsims,
+        "template" => ComponentType::templates,
         _ => panic!("invalid component type"),
     };
     let args = Arguments {
